@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSpeechSynthesis } from 'react-speech-kit';
-
+import "./Main.css";
 
 function Main() {
   const [videoStream, setVideoStream] = useState(null);
@@ -9,7 +9,7 @@ function Main() {
   const {speak} = useSpeechSynthesis();
   const videoRef = useRef();
   const serverUrl = 'http://127.0.0.1:5000'; 
-  let bool = false;
+  // let bool = false;
   useEffect(() => {
     const initCamera = async () => {
       try {
@@ -129,9 +129,15 @@ function Main() {
 
   return (
     <div className="App">
-      <h1>Camera App</h1>
-      <video ref={videoRef} autoPlay />
-      {viewButton ?  <button onClick={handleStop}>Stop Frame</button> :<button onClick={handleStart}>Capture Frame</button> }
+      <div className="navbar">
+        <div className="logo">
+          Drishti
+        </div>
+      </div>
+      <div className='box'><video className="image" ref={videoRef} autoPlay /></div>
+      <div className="btncontainer">{viewButton ? <button className='button button2' onClick={handleStop}>Stop Frame</button>
+        :
+        <button className='button' onClick={handleStart}>Capture Frame</button>}</div>
     </div>
   );
 }
